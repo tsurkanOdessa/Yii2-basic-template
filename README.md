@@ -210,7 +210,7 @@ INSERT INTO `setting` (`id`, `parent_id`, `code`, `type`, `store_range`, `store_
 (3115, 31, 'smtpMail', 'text', '', '', '', '50');
 ```
 
-###Use Your Setting
+### Use Your Setting
 
 Once you set the value at the backend. Simply access your setting by the following code:
 

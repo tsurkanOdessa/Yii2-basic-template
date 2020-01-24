@@ -22,6 +22,7 @@ class DefaultController extends Controller
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
+
         ];
     }
 
@@ -31,7 +32,7 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->render( 'index' );
     }
 
     /**
@@ -52,14 +53,14 @@ class DefaultController extends Controller
             $model->email = $identity->email;
         }
 
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
+        if ($model->load( Yii::$app->request->post() ) && $model->contact( Yii::$app->params['adminEmail'] )) {
+            Yii::$app->session->setFlash( 'contactFormSubmitted' );
 
             return $this->refresh();
         }
-        return $this->render('contact', [
+        return $this->render( 'contact', [
             'model' => $model,
-        ]);
+        ] );
     }
 
     /**
@@ -69,6 +70,21 @@ class DefaultController extends Controller
      */
     public function actionAbout()
     {
-        return $this->render('about');
+        return $this->render( 'about' );
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        $css_theme = Yii::$app->setting->get( 'themes' );
+        Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = [
+                'sourcePath' => '@app/assets/bootstrap',
+                'css' => [
+                    YII_ENV_DEV ? $css_theme . '/bootstrap.css' : $css_theme . '/bootstrap.min.css',
+                ]
+        ];
     }
 }

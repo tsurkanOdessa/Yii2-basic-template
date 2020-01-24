@@ -32,7 +32,6 @@ $params = ArrayHelper::merge(
  * @var string
  */
 $css_theme = 'default';
-
 $config = [
     'id' => 'app',
     'name' => 'Yii2-basic-start',

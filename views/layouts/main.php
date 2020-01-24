@@ -16,6 +16,14 @@ use modules\users\Module as UserModule;
 use modules\admin\Module as AdminModule;
 
 AppAsset::register($this);
+
+
+
+
+
+
+
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -24,12 +32,16 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php
+
+    ?>
     <?= Html::csrfMetaTags() ?>
     <title><?= Yii::$app->setting->get('siteName') . ' | ' . Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
 <body>
 <?php $this->beginBody() ?>
+
 
 <div class="wrap">
     <?php

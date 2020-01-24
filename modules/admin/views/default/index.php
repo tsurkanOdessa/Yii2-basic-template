@@ -3,7 +3,6 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use funson86\setting\models\Setting;
-use funson86\setting\Module;
 
 $this->title = 'Setting';
 $this->params['breadcrumbs'][] = $this->title;

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 AppAsset::register( $this );
 
 $nav = Yii::$app->setting->get( 'siteNav' );
-//$content = '@app/modules/main/views/default/index.php';
+
 ?>
 
 <?php $this->beginPage() ?>
@@ -16,9 +16,6 @@ $nav = Yii::$app->setting->get( 'siteNav' );
         <meta charset="<?= Yii::$app->charset ?>">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <?php
-
-        ?>
         <?= Html::csrfMetaTags() ?>
         <title><?= Yii::$app->setting->get( 'siteName' ) . ' | ' . Html::encode( $this->title ) ?></title>
         <?php $this->head() ?>
@@ -29,7 +26,7 @@ $nav = Yii::$app->setting->get( 'siteNav' );
     <div class="wrap">
         <?php echo $this->render( 'header.php' ); ?>
 
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <header class="col-md-3">
                     <?php if ($nav == 'left'): ?>

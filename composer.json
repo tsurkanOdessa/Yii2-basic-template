@@ -17,7 +17,8 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "bower-asset/bootstrap-datepicker": "^1.7",
         "dmstr/yii2-adminlte-asset": "^2.1",
-        "funson86/yii2-setting": "*"
+        "funson86/yii2-setting": "*",
+        "kartik-v/yii2-widget-sidenav": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

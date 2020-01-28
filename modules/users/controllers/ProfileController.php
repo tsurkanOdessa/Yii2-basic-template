@@ -159,4 +159,18 @@ class ProfileController extends Controller
         }
         throw new NotFoundHttpException(Module::t('module', 'The requested page does not exist.'));
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        $css_theme = Yii::$app->setting->get( 'themes' );
+        Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = [
+            'sourcePath' => '@app/assets/bootstrap',
+            'css' => [
+                YII_ENV_DEV ? $css_theme . '/bootstrap.css' : $css_theme . '/bootstrap.min.css',
+            ]
+        ];
+    }
 }

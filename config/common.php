@@ -21,6 +21,7 @@ return [
         'modules\users\Bootstrap',
         'modules\admin\Bootstrap',
         'modules\rbac\Bootstrap',
+        'modules\pages\Bootstrap',
     ],
     'modules' => [
         'main' => [
@@ -28,6 +29,10 @@ return [
         ],
         'users' => [
             'class' => 'modules\users\Module',
+        ],
+        'pages' => [
+            'class' => 'modules\pages\Module',
+            'layout' => '@app/modules/render/layouts/main'
         ],
         'rbac' => [
             'class' => 'modules\rbac\Module',
@@ -44,6 +49,9 @@ return [
                 'class' => 'funson86\setting\Module',
                 'controllerNamespace' => 'funson86\setting\controllers'
             ],
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+        ],
     ],
     'components' => [
         'setting' => [

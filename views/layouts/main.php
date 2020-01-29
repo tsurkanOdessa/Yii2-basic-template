@@ -26,8 +26,8 @@ $nav = Yii::$app->setting->get( 'siteNav' );
     <div class="wrap">
         <?php echo $this->render( 'header.php' ); ?>
 
-        <div class="container">
-            <div class="row">
+        <div class="container-fluid">
+            <div class="row-fluid">
                 <header class="col-md-3">
                     <?php if ($nav == 'left'): ?>
                         <?php echo $this->render( 'left.php' ); ?>

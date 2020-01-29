@@ -38,9 +38,9 @@ $identity = Yii::$app->user->identity;
                     ['label' => 'Основное', 'icon' => 'file-code-o', 'url' => ['/admin']],
                     ['label' => 'Пользователи', 'icon' => 'file-code-o', 'url' => ['/admin/user/index'],'visible' => Yii::$app->user->can(\modules\rbac\models\Permission::PERMISSION_MANAGER_USERS)],
                     ['label' => 'R.B.A.C.', 'icon' => 'dashboard', 'url' => ['/rbac/roles/index'],'visible' => Yii::$app->user->can(\modules\rbac\models\Permission::PERMISSION_MANAGER_RBAC)],
-                    //['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+                    ['label' => 'Страницы', 'icon' => 'file-code-o', 'url' => ['/pages/index']],
                     [
-                        'label' => 'Системные настройки',
+                        'label' => 'Системные инструменты',
                         'icon' => 'share',
                         'url' => '#',
                         'items' => [

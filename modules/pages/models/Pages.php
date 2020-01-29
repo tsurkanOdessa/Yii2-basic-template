@@ -48,9 +48,10 @@ class Pages extends \yii\db\ActiveRecord
         ];
     }
 
-    public static function getAllPages($parent = 0, $level = 0, $exclude = 0) {
+    public static function getAllPages($parent = 0, $level = 0, $exclude = 0)
+    {
         $children = self::find()
-            ->where(['parent_id' => $parent])
+            ->where( ['parent_id' => $parent] )
             ->asArray()
             ->all();
         $result = [];
@@ -61,19 +62,20 @@ class Pages extends \yii\db\ActiveRecord
                 continue;
             }
             if ($level) {
-                $pages['title'] = str_repeat('— ', $level) . $pages['title'];
+                $pages['title'] = str_repeat( '— ', $level ) . $pages['title'];
             }
             $result[] = $pages;
             $result = array_merge(
                 $result,
-                self::getAllPages($pages['id'], $level+1, $exclude)
+                self::getAllPages( $pages['id'], $level + 1, $exclude )
             );
         }
         return $result;
     }
 
-    public static function getTree($exclude = 0, $root = false) {
-        $data = self::getAllPages(0, 0, $exclude);
+    public static function getTree($exclude = 0, $root = false, $parents = false)
+    {
+        $data = self::getAllPages( 0, 0, $exclude );
         $tree = [];
         // при выборе родителя категории можно выбрать значение «Без родителя»,
         // т.е. создать категорию верхнего уровня, у которой не будет родителя
@@ -81,8 +83,18 @@ class Pages extends \yii\db\ActiveRecord
             $tree[0] = 'Без родителя';
         }
         foreach ($data as $item) {
-            $tree[$item['id']] = $item['title'];
+            if ($parents = true && $item['parent_id'] == 0) {
+                $tree[$item['id']] = $item['name'];
+            }
+
         }
         return $tree;
     }
+
+    public static function getPage($parent_id)
+    {
+        return self::findOne( $parent_id );
+    }
+
+
 }

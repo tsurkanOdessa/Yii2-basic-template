@@ -2,22 +2,18 @@
 
 namespace modules\pages\controllers;
 
-
 use Yii;
-use app\modules\pages\models\Pages;
-use app\modules\pages\models\search\PagesSearch;
+use app\modules\pages\models\PageContent;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PagesController implements the CRUD actions for Pages model.
+ * ContentController implements the CRUD actions for PageContent model.
  */
-class DefaultController extends Controller
+class ContentController extends Controller
 {
-    /** @var  string|bool $jsFile */
-    protected $jsFile;
-
     /**
      * {@inheritdoc}
      */
@@ -34,46 +30,22 @@ class DefaultController extends Controller
     }
 
     /**
-     * @inheritdoc
-     */
-    public function init()
-    {
-        parent::init();
-        $this->processRegisterJs();
-
-    }
-
-    /**
-     * Publish and register the required JS file
-     */
-    protected function processRegisterJs()
-    {
-        $this->jsFile = '@modules/pages/views/default/ajax/ajax.js';
-        $assetManager = Yii::$app->assetManager;
-        $assetManager->publish($this->jsFile);
-        $url = $assetManager->getPublishedUrl($this->jsFile);
-        $this->view->registerJsFile($url,
-            ['depends' => 'yii\web\JqueryAsset',] // depends
-        );
-    }
-
-    /**
-     * Lists all Pages models.
+     * Lists all PageContent models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PagesSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => PageContent::find(),
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single Pages model.
+     * Displays a single PageContent model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -86,13 +58,13 @@ class DefaultController extends Controller
     }
 
     /**
-     * Creates a new Pages model.
+     * Creates a new PageContent model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Pages();
+        $model = new PageContent();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index', 'id' => $model->id]);
@@ -104,7 +76,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * Updates an existing Pages model.
+     * Updates an existing PageContent model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -124,7 +96,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * Deletes an existing Pages model.
+     * Deletes an existing PageContent model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -138,21 +110,18 @@ class DefaultController extends Controller
     }
 
     /**
-     * Finds the Pages model based on its primary key value.
+     * Finds the PageContent model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Pages the loaded model
+     * @return PageContent the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Pages::findOne($id)) !== null) {
+        if (($model = PageContent::findOne($id)) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
-
-
-
 }

@@ -24,8 +24,12 @@ $nav = Yii::$app->setting->get( 'siteNav' );
     <?php $this->beginBody() ?>
 
     <div class="wrap">
-        <?php echo $this->render( 'header.php' ); ?>
 
+        <?php echo $this->render( 'header.php' ); ?>
+        <?php if ($nav == 'top'): ?>
+            <br>
+            <br>
+        <?php endif; ?>
         <div class="container-fluid">
             <div class="row-fluid">
                 <header class="col-md-3">
@@ -33,13 +37,13 @@ $nav = Yii::$app->setting->get( 'siteNav' );
                         <?php echo $this->render( 'left.php' ); ?>
                     <?php endif; ?>
                 </header>
-                <main class="col-md-<?= $nav == 'top' ? 12 : 9;?>">
+                <main class="col-md-<?= $nav == 'top' ? 12 : 9; ?>">
                     <?= $content ?>
                 </main>
             </div>
         </div>
-    </div>
 
+    </div>
 
     <footer class="footer">
         <div class="container">
@@ -48,6 +52,7 @@ $nav = Yii::$app->setting->get( 'siteNav' );
             </p>
         </div>
     </footer>
+
 
     <?php $this->endBody() ?>
     </body>

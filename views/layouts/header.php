@@ -6,6 +6,7 @@
 <?php if ($nav == 'top') :?>
     <?php echo $this->render( 'top.php' ); ?>
 <?php elseif ($nav == 'left'): ?>
+<div class="container-fluid">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -15,6 +16,7 @@
             </div>
         </div>
     </nav>
+</div>
 <?php endif;?>
 
 

@@ -1,11 +1,13 @@
 <?php
 
+use app\modules\pages\models\Pages;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use modules\main\Module as MainModule;
 use modules\users\Module as UserModule;
 use modules\admin\Module as AdminModule;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 NavBar::begin( [
     'brandLabel' => Html::img( '@web/images/logo.png', ['alt' => Yii::$app->setting->get( 'siteName' ), 'class' => 'yii-logo'] ) . Yii::$app->setting->get( 'siteName' ),
@@ -28,6 +30,41 @@ $menuItems = [
         'url' => ['/main/default/contact']
     ],
 ];
+
+$pages = Pages::find()->indexBy( 'id' )->asArray()->all();
+$subPages = $pages;
+$num = 3;
+foreach ($pages as $page) {
+    {
+        if ($page['parent_id'] == 0) {
+            $pageId = $page['id'];
+            $subItems = [];
+            foreach ($subPages as $subPage) {
+                if ($pageId == $subPage['parent_id']) {
+                    $subItems[] = [
+                        'label' => $subPage['name'],
+                        'url' => Url::to( ['/main/default/page/', 'page_id' => $subPage['id']] ),
+                    ];
+                }
+            };
+
+            if (count($subItems)>0){
+                $thisPage = [
+                    'label' => $page['name'],
+                    'url' => Url::to( ['/main/default/page/', 'page_id' => $page['id']] ),
+                ];
+                array_unshift($subItems,$thisPage);
+            }
+            $menuItems[] = [
+                'label' => $page['name'],
+                'url' => Url::to( ['/main/default/page/', 'page_id' => $page['id']] ),
+                'items' => $subItems
+            ];
+
+        }
+    }
+}
+
 if (Yii::$app->user->isGuest) {
     $menuItems[] = ['label' => UserModule::t( 'module', 'Check in' ), 'url' => ['/users/default/signup']];
     $menuItems[] = [

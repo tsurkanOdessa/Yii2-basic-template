@@ -29,21 +29,25 @@ use modules\pages\Module;
     echo $form->field($model, 'content')->widget(Widget::className(), [
         'settings' => [
             'lang' => 'ru',
-            'minHeight' => 200,
+            'minHeight' => 400,
             'imageUpload' => Url::to(['default/image-upload']),
             'imageManagerJson' => Url::to(['/default/images-get']),
             'imageDelete' => Url::to(['/default/file-delete']),
             'fileManagerJson' => Url::to(['/default/files-get']),
             'fileUpload' => Url::to(['default/file-upload']),
+            'allowedTags' => ['div','p', 'h1', 'h2', 'pre', 'br', 'hr', 'span'],
             'plugins' => [
+                'alignment',
                 'imagemanager',
                 'table',
                 'video',
                 'clips',
                 'fontcolor',
                 'fullscreen',
+               // 'textdirection',
                 'imagemanager' => 'vova07\imperavi\bundles\ImageManagerAsset',
                 'filemanager' => 'vova07\imperavi\bundles\FileManagerAsset',
+                'addcode' => 'app\plugins\assets\AddBrAsset'
             ],
             'clips' => [
                 ['Lorem ipsum...', 'Lorem...'],
@@ -52,6 +56,9 @@ use modules\pages\Module;
                 ['blue', '<span class="label-blue">blue</span>'],
             ],
         ],
+        'plugins' => [
+            'addcode' => 'app\plugins\assets\AddBrAsset'
+        ]
     ]);
 
     ?>

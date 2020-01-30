@@ -16,7 +16,7 @@ return [
     'Content' => 'Содержимое',
     'Create Page Content' => 'Добавить содержимое страницы',
     'Page Contents' => 'Содержимое страниц',
-    'Update Page Content' => 'Обновление содержимого страницы',
+    'Update Page Content: {name}' => 'Обновление содержимого страницы : {name}',
 
 
 

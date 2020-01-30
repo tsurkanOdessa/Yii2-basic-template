@@ -26,7 +26,7 @@ $searchModel = new PagesSearch();
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+
             [
                 'attribute' => 'parent_id',
                 'filter' => Html::activeDropDownList( $searchModel, 'id', $searchModel::getTree( $searchModel->id, false, false ), [
@@ -43,10 +43,11 @@ $searchModel = new PagesSearch();
                 },
                 'headerOptions' => ['width' => '300'],
                 'contentOptions' => [
-                    'style' => 'width:200px',
+                    'style' => 'width:80%',
+
                 ],
             ],
-            'content:ntext',
+            //'content:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

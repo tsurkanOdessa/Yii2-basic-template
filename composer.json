@@ -20,7 +20,8 @@
         "funson86/yii2-setting": "*",
         "kartik-v/yii2-widget-sidenav": "*",
         "kartik-v/yii2-grid": "@dev",
-        "johnitvn/yii2-ajaxcrud": "*"
+        "johnitvn/yii2-ajaxcrud": "*",
+        "vova07/yii2-imperavi-widget": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

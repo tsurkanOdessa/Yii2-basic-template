@@ -83,10 +83,8 @@ class PageContent extends \yii\db\ActiveRecord
     {
         $data = self::getAllPages( 0, 0, $exclude );
         $tree = [];
-        // при выборе родителя категории можно выбрать значение «Без родителя»,
-        // т.е. создать категорию верхнего уровня, у которой не будет родителя
+
         if ($root) {
-            //$tree[0] = 'Без родителя';
         }
         foreach ($data as $item) {
 
@@ -94,5 +92,10 @@ class PageContent extends \yii\db\ActiveRecord
 
         }
         return $tree;
+    }
+
+    public static function getContent($id)
+    {
+        return self::find()->where(['page_id' => $id] )->one();
     }
 }

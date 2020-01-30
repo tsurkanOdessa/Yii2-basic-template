@@ -44,7 +44,7 @@ $identity = Yii::$app->user->identity;
                         'url' => '#',
                         'items' => [
                             ['label' => 'Страницы', 'icon' => 'file-code-o', 'url' => ['/pages/index'],],
-                            ['label' => 'Контент', 'icon' => 'dashboard', 'url' => ['/pages/content/index'],],
+                            ['label' => 'Контент', 'icon' => 'file-code-o', 'url' => ['/pages/content/index'],],
                         ],
                     ],
                     [

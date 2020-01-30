@@ -39,7 +39,7 @@ $searchModel = new PagesSearch();
                 'label' => Module::t( 'module', 'Parent ID' ),
                 'format' => 'raw',
                 'content' => function ($data) {
-                    return Pages::getPage($data->id)['name'];
+                    return Pages::getPage($data->page_id)['name'];
                 },
                 'headerOptions' => ['width' => '300'],
                 'contentOptions' => [

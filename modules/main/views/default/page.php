@@ -1,13 +1,27 @@
 <?php
-$this->title = 'My';
+
+use app\modules\pages\models\PageContent;
+use app\modules\pages\models\Pages;
+
+
+$title = '';
+if (isset( $_GET['page_id'] )) {
+    $page_id = $_GET['page_id'];
+
+    if (($model = Pages::findOne( $page_id )) !== null) {
+        $title = $model->title;
+    }
+}
+$this->title = $title;
+
+$content = '';
+if (($modelContent = PageContent::getContent($page_id)) !== null) {
+
+       $content = $modelContent->content;
+}
+
 ?>
 
 <div class="main-default-index">
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
+    <?php echo $content ?>
 </div>
